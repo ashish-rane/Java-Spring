@@ -1,0 +1,48 @@
+Spring Notes
+
+Spring: Dependency Injection Framework
+Bean: Instances of classes managed by Spring.
+ApplicationContext: IOC Container which manages the instances/lifecycle of beans
+ComponentScan: Tell spring where to look for all the Components
+Component : Tell spring what classes to manage
+Autowiring: Tell spring what the dependencies are.
+
+By default Constructor injection takes precedence over Setter injection.
+
+@Component: Put on class whose instantiation 
+@Autowired: Put on an instance member which is another Component indicating a dependency from current Component to other.
+
+If multiple instances of a Component Type are found (classes implementing the same interface)
+@Primary : indicates which to use
+@Qualifier("name"): Put on class and also the dependency to indicate which to use
+By name: make the member name same as ClassName of the component (first character lower case)
+
+By default all beans are of scope Singleton. (when we retrieve a bean from context we get the same instance.)
+
+@Scope(ConfigurableBeanFactory.PROTOTYPE) put on component to indicate that everytime an instance is retrieved from context it is a new instance.
+
+If a component is referenced from another component and if the parent component is Singleton then even if the referenced component is marked
+as scope PROTOTYPE it will still be the same instance as a member of the parent component.
+To override this behavior, we have to set another attribute called proxyMode
+@Component(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode=ScopedProxyMode.TARGET_CLASS)
+
+In this case even if we get the same instance of the parent component, we will get a new instance of the referenced component.
+Also if we call the getter of the parent class we still get a new instance of the referenced component.
+
+@ComponentScan("package ")
+Put this on the same class as the @SpringBootApplication so that it scans the specified package for components.
+By default spring will only search in the same package as the SpringBootApplication class
+
+@PostContruct - placed on a method inside the bean class. This method is called after the bean is instatiated and dependencies initialized.
+Used to perform initialized after dependencies are resolved.
+
+@PreDestroy - placed on a method inside the bean class. This method is called just before bean is removed from the context.
+Used to perform cleanup activities.
+
+CDI is a specification (interface) which Spring supports 
+
+CDI => Spring
+@Inject => @Autowired
+@Named => @Component
+@Singleton => Scope Singleton
+
