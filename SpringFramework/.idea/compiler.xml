@@ -6,17 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="basics" />
+        <module name="Basics" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
-      <module name="basics" target="1.8" />
-      <module name="withoutBoot" target="1.8" />
+      <module name="Basics" target="1.8" />
+      <module name="WithoutBoot" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="basics" options="-parameters" />
+      <module name="Basics" options="-parameters" />
+      <module name="WithoutBoot" options="-parameters" />
     </option>
   </component>
 </project>
